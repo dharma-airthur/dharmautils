@@ -14,7 +14,8 @@ class LogConfig:
         if not logger.handlers:
             # Configure logger if it hasn't been configured yet
             formatter = logging.Formatter(
-                '%(asctime)s - %(name)s - [%(trace_id)s] - %(levelname)s - %(message)s'
+                '%(asctime)s - %(name)s <%(trace_id)s> [%(levelname)s] - %(message)s',
+                datefmt='%Y-%m-%d %H:%M:%S'
             )
             
             handler = logging.StreamHandler()

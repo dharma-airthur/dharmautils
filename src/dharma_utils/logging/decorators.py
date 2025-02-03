@@ -2,6 +2,7 @@ import functools
 import inspect
 from typing import Any, Callable, Type
 from .log_config import LogConfig
+from .log_wrapper import DharmaLogger
 
 class DharmaLog:
     """
@@ -19,7 +20,11 @@ class DharmaLog:
         }
 
         # Create logger instance for the class
-        logger = self.log_config.get_logger(cls.__name__)
+        base_logger = self.log_config.get_logger(cls.__name__)
+        logger = DharmaLogger(base_logger)
+        
+        # Add logger as a class attribute
+        cls.logger = logger
 
         # Wrap each method with logging
         for name, method in original_methods.items():
@@ -28,29 +33,19 @@ class DharmaLog:
 
         return cls
 
-    def _create_logged_method(self, method: Callable, logger: Any) -> Callable:
+    def _create_logged_method(self, method: Callable, logger: DharmaLogger) -> Callable:
         @functools.wraps(method)
-        def wrapper(*args, **kwargs):
+        def wrapper(instance, *args, **kwargs):
             trace_id = self.log_config.generate_trace_id()
-            extra = {'trace_id': trace_id}
+            logger.set_trace_id(trace_id)
 
             try:
-                logger.info(
-                    f"Calling method '{method.__name__}'",
-                    extra=extra
-                )
-                result = method(*args, **kwargs)
-                logger.info(
-                    f"Method '{method.__name__}' completed successfully",
-                    extra=extra
-                )
+                logger.info(f"Calling method '{method.__name__}'")
+                result = method(instance, *args, **kwargs)
+                logger.info(f"Method '{method.__name__}' completed successfully")
                 return result
             except Exception as e:
-                logger.error(
-                    f"Error in method '{method.__name__}': {str(e)}",
-                    extra=extra,
-                    exc_info=True
-                )
+                logger.error(f"Error in method '{method.__name__}': {str(e)}", exc_info=True)
                 raise
 
         return wrapper 
