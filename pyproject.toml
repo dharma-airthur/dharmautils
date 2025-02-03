@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dharmautils"
-version = "1.0"
+version = "1.0.1"
 description = "A library developed to manage and automate the entire machine learning operations (MLOps) lifecycle within your company."
 authors = ["Arthur Ferreira <arthur.ferreira@dharma-ai.com>"]
 license = "Copyright (c) 2024 Dharma AI"
