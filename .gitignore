@@ -163,3 +163,14 @@ cython_debug/
 
 # ML
 mlruns/
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
