@@ -1,3 +1,15 @@
+[tool.poetry]
+name = "dharmautils"
+version = "1.0"
+description = "A library developed to manage and automate the entire machine learning operations (MLOps) lifecycle within your company."
+authors = ["Arthur Ferreira <arthur.ferreira@dharma-ai.com>"]
+license = "Copyright (c) 2024 Dharma AI"
+readme = "README.md"
+packages = [{ include = "dharmautils", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
 [build-system]
-requires = ["setuptools>=42", "wheel"]
-build-backend = "setuptools.build_meta" 
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
