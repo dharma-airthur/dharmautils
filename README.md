@@ -7,7 +7,6 @@ A library developed to standardize utility classes and their usage across differ
 Using Poetry:
 
 ```bash
-# Add dharmautils directly from the repository
 poetry add git+https://github.com/DharmaAI/dharmautils.git
 ```
 
