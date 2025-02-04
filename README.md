@@ -14,16 +14,7 @@ A library developed to standardize utility classes and their usage across differ
 - Exception tracking and error logging
 - Thread-safe logging implementation
 
-## Installation
-
-Using Poetry:
-
-    ```bash
-    # Add dharmautils directly from the repository
-    poetry add git+https://github.com/DharmaAI/dharmautils.git
-    ```
-
-## Usage
+#### Usage
 
     ```python
     from dharmautils.logging import DharmaLog
@@ -38,6 +29,16 @@ Using Poetry:
         def predict(self, input_data):
             self.logger.info("Making predictions")
             # Your prediction code here
+    ```
+
+
+## Installation
+
+Using Poetry:
+
+    ```bash
+    # Add dharmautils directly from the repository
+    poetry add git+https://github.com/DharmaAI/dharmautils.git
     ```
 
 ## Logging Features
